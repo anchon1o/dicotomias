@@ -1,0 +1,123 @@
+:root{
+  --bg:#f9e27d; --surface:#ffffff; --ink:#1b1730; --muted:#5b5270; --line:#1b1730; --shadow:#1b1730;
+  --a:#ff4f5e; --a-soft:#ffd9dc; --b:#3d7bff; --b-soft:#d8e5ff; --gold:#ffcf33; --worse:#8e5bd6; --ok:#1f8a4c; --bad:#c8323f;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#1b1730;--surface:#2a2450;--ink:#fff6dc;--muted:#bdb3d8;--line:#0d0b1a;--shadow:#0d0b1a;--a-soft:#5a2430;--b-soft:#23356a;--ok:#5fd18b;--bad:#ff7a85;color-scheme:dark;}
+}
+:root[data-theme="dark"]{--bg:#1b1730;--surface:#2a2450;--ink:#fff6dc;--muted:#bdb3d8;--line:#0d0b1a;--shadow:#0d0b1a;--a-soft:#5a2430;--b-soft:#23356a;--ok:#5fd18b;--bad:#ff7a85;color-scheme:dark;}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);font-family:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.4}
+.app{height:100%;display:flex;flex-direction:column}
+.bar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px 4px}
+.logo{font-family:"Bowlby One",Impact,sans-serif;font-size:clamp(17px,5.2vw,28px);line-height:1;color:#fff;-webkit-text-stroke:2px var(--line);paint-order:stroke fill;text-shadow:0 3px 0 var(--line);transform:rotate(-3deg)}
+.logo .ra{color:var(--a)} .logo .rb{color:var(--b)}
+.right{display:flex;align-items:center;gap:8px}
+.pts{font-family:"Bowlby One",Impact,sans-serif;font-size:13px;padding:4px 10px;border:3px solid var(--line);border-radius:999px;background:var(--gold);color:#1b1730;box-shadow:0 3px 0 var(--shadow)}
+.icon{display:grid;place-items:center;width:38px;height:34px;border:3px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);box-shadow:0 3px 0 var(--shadow);cursor:pointer;padding:0}
+.icon svg{width:20px;height:20px}
+.lang{position:relative}
+.flagbtn,.flagopt{display:block;padding:3px;border:3px solid var(--line);border-radius:8px;background:var(--surface);cursor:pointer;line-height:0}
+.flagbtn{box-shadow:0 3px 0 var(--shadow)}
+.flagbtn svg,.flagopt svg{width:30px;height:20px;display:block;border-radius:2px}
+.flagmenu{position:absolute;right:0;top:calc(100% + 6px);display:flex;flex-direction:column;gap:6px;z-index:20}
+.main{flex:1;min-height:0;display:flex;flex-direction:column}
+.stagebox{flex:1;min-height:0;display:flex;flex-direction:column;padding:0 12px}
+.qhead{flex:0 0 auto;padding:4px 2px 8px}
+.meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.kind{display:inline-block;font-family:"Bowlby One",Impact,sans-serif;font-size:12px;padding:3px 10px;border:3px solid var(--line);border-radius:999px;background:var(--gold);color:#1b1730;transform:rotate(-2deg)}
+.kind.worse{background:var(--worse);color:#fff}
+.date{font-weight:600;color:var(--muted);font-size:14px}
+.topic{font-family:"Bowlby One",Impact,sans-serif;font-weight:400;font-size:clamp(22px,min(6.4vw,4.4vh),46px);line-height:1.08;margin:6px 0 0}
+.arena{position:relative;flex:1;min-height:170px;border:3px solid var(--line);border-radius:20px;overflow:hidden;background:#ffd447;box-shadow:0 4px 0 var(--shadow)}
+.arena canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.panel{flex:0 0 auto;max-height:56%;overflow:auto;margin-top:12px;padding:14px 14px 16px;background:var(--surface);border-top:3px solid var(--line);border-radius:22px 22px 0 0}
+.ask{margin:0 0 10px;font-family:"Bowlby One",Impact,sans-serif;font-weight:400;font-size:clamp(18px,2.6vh,28px);line-height:1.15}
+.hint{margin:-6px 0 10px;color:var(--muted)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pick{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:clamp(104px,17vh,210px);padding:6px 6px 10px;border:3px solid var(--line);border-radius:18px;color:var(--ink);font:800 clamp(15px,2.2vh,22px)/1.15 "Rubik",sans-serif;text-align:center;box-shadow:0 4px 0 var(--shadow);cursor:pointer}
+.pick.a{background:var(--a-soft)} .pick.b{background:var(--b-soft)}
+.pick img{width:clamp(60px,10vh,130px);height:clamp(60px,10vh,130px)}
+.pick:active,.btn:active,.icon:active{transform:translateY(3px);box-shadow:0 1px 0 var(--shadow)}
+button:focus-visible{outline:3px dashed var(--a);outline-offset:3px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.tag{border:3px solid var(--line);border-radius:999px;padding:3px 10px;font-weight:600;font-size:14px}
+.tag.a{background:var(--a-soft)} .tag.b{background:var(--b-soft)}
+.count{margin:0 0 4px;font-weight:600}
+.cd{margin:0 0 12px;color:var(--muted)}
+.cd b{font-family:"Bowlby One",Impact,sans-serif;font-weight:400;color:var(--ink);font-size:20px;letter-spacing:.5px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:3px solid var(--line);border-radius:14px;background:var(--gold);color:#1b1730;font-family:"Bowlby One",Impact,sans-serif;font-size:15px;padding:8px 14px;box-shadow:0 4px 0 var(--shadow);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink)}
+.fighting{margin:0 0 10px;font-family:"Bowlby One",Impact,sans-serif;font-size:18px;animation:pulse .8s ease-in-out infinite alternate}
+@keyframes pulse{to{opacity:.55}}
+@media (prefers-reduced-motion: reduce){.fighting{animation:none}}
+.winner{font-family:"Bowlby One",Impact,sans-serif;font-size:21px;line-height:1.15;margin:0 0 10px}
+.vbar{display:flex;height:36px;border:3px solid var(--line);border-radius:999px;overflow:hidden}
+.vbar div{display:flex;align-items:center;white-space:nowrap;overflow:hidden;min-width:0;color:#fff;font-family:"Bowlby One",Impact,sans-serif;font-size:14px}
+.va{background:var(--a);padding-left:12px}
+.vb{background:var(--b);justify-content:flex-end;padding-right:12px;border-left:3px solid var(--line)}
+.legend{display:flex;justify-content:space-between;gap:10px;margin-top:5px;color:var(--muted);font-size:14px}
+.legend span:last-child{text-align:right}
+.chartT{margin:14px 0 4px;font-weight:800;font-size:14px}
+.chart{display:block;width:100%;height:auto;border:3px solid var(--line);border-radius:12px;overflow:hidden}
+.mine{margin:12px 0}
+.ok{color:var(--ok);font-weight:800} .bad{color:var(--bad);font-weight:800}
+.sheet{position:fixed;inset:0;z-index:30;background:rgba(27,23,48,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet-in{width:100%;max-width:560px;max-height:85%;overflow:auto;background:var(--surface);border:3px solid var(--line);border-bottom:0;border-radius:22px 22px 0 0;padding:14px 14px calc(16px + env(safe-area-inset-bottom,0px))}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sheet-h h2{margin:0;font-family:"Bowlby One",Impact,sans-serif;font-weight:400;font-size:22px}
+.day{display:block;width:100%;text-align:left;border:3px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:10px 12px;margin:0 0 10px;box-shadow:0 3px 0 var(--shadow);cursor:pointer;font:inherit}
+.day.on{background:var(--gold);color:#1b1730}
+.day small{display:block;font-weight:600;opacity:.75}
+.day strong{display:block;font-size:17px;margin:2px 0 6px}
+.mini{display:flex;height:12px;border:2px solid var(--line);border-radius:999px;overflow:hidden}
+.mini i{display:block}
+.status{font-weight:800;font-size:14px}
+.foot{margin-top:6px;color:var(--muted);font-size:14px}
+.foot p{margin:0 0 6px}
+.link{background:none;border:0;padding:0;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer}
+.gal h3{margin:16px 0 6px;font-family:"Bowlby One",Impact,sans-serif;font-weight:400;font-size:17px}
+.galname{font-weight:800;font-size:14px;margin:6px 0 4px}
+.galrow{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:#ffd447;border:3px solid var(--line);border-radius:14px;padding:4px}
+.galrow img{width:100%;height:auto;display:block}
+@media (min-width:760px) and (min-aspect-ratio:5/4){
+  .main{flex-direction:row;gap:14px;padding:0 14px 14px}
+  .stagebox{padding:0}
+  .panel{width:clamp(320px,34vw,480px);max-height:none;margin-top:0;border:3px solid var(--line);border-radius:22px;box-shadow:0 4px 0 var(--shadow);align-self:stretch}
+}
+@media (max-height:520px){
+  .bar{padding:4px 12px 2px}.logo{font-size:20px}
+  .qhead{padding:2px 2px 6px}.topic{font-size:20px;margin-top:2px}
+  .pick{min-height:78px;font-size:14px}.pick img{width:44px;height:44px}
+  .ask{font-size:16px;margin-bottom:6px}.hint{display:none}
+  .panel{padding:10px 12px}
+}
+.kind{font-size:clamp(13px,1.9vh,18px);padding:5px 14px}
+body.worse{--bg:#3b2d6e}
+body.worse .qhead{color:#fff}
+body.worse .date{color:#d9cff7}
+body.worse .arena{background:#4a3592}
+.pick .tw{font:800 11px "Rubik",sans-serif;background:var(--worse);color:#fff;border:2px solid var(--line);border-radius:999px;padding:1px 8px;margin-bottom:2px}
+.cal-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 10px}
+.cal-h strong{font-family:"Bowlby One",Impact,sans-serif;font-weight:400;font-size:18px;text-transform:capitalize}
+.cal-h .btn{padding:4px 14px;font-size:18px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.wd{font-weight:800;font-size:12px;text-align:center;color:var(--muted);text-transform:uppercase}
+.cd-day{aspect-ratio:1/1.2;border:2px solid var(--line);border-radius:10px;background:var(--surface);padding:3px 2px 2px;display:flex;flex-direction:column;font:inherit;color:var(--ink);cursor:pointer;min-width:0}
+.cd-day.empty{opacity:.35;border-style:dashed;cursor:default}
+.cd-day .num{font-size:11px;font-weight:800;line-height:1;text-align:left;padding-left:2px}
+.cd-day .th{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.cd-day .th img{width:50%;max-width:42px;height:auto;display:block}
+.cd-day img.l{opacity:.35;filter:grayscale(1)}
+.cd-day.w{background:#e9ddff;border-color:var(--worse);color:#1b1730}
+.cd-day.on{background:var(--gold);color:#1b1730}
+.cd-day.today{box-shadow:0 0 0 3px var(--a)}
+.cal-leg{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;margin:10px 0 0}
+.cal-leg .sw{width:14px;height:14px;border:2px solid var(--worse);background:#e9ddff;border-radius:4px}
